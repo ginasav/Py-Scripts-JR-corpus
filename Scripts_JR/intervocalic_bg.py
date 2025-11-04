@@ -84,18 +84,18 @@ def find_intervocalic_bg(text):
             
         position = match.start()
         
-    # Surrounding context
-    context_start = max(0, position - 20)
-    context_end = min(len(text), position + 23)
-    context = text[context_start:context_end]
+        # Surrounding context
+        context_start = max(0, position - 20)
+        context_end = min(len(text), position + 23)
+        context = text[context_start:context_end]
     
-    results.append({
-        'letter': letter,
-        'trigram': matched_text,
-        'type': 'boundary',
-        'position': position,
-        'context': context.strip()
-    })
+        results.append({
+            'letter': letter,
+            'trigram': matched_text,
+            'type': 'boundary',
+            'position': position,
+            'context': context.strip()
+        })
     
     return results
 
