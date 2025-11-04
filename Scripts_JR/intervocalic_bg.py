@@ -48,7 +48,7 @@ def find_intervocalic_bg(text):
     vowels = r'[aeiouàèéìòù]'
     
     results = []
-    text_lower = text_lower()
+    text_lower = text.lower()
     
     # Pattern 1: Word-internal intervocalic
     pattern_internal = vowels + r'[bg]' + vowels
