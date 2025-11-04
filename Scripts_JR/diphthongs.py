@@ -37,7 +37,7 @@ def find_diphtongs(text):
     """
     text_lower = text.lower()
     
-    pattern = r'\b\w*(ie|uo)w+\b'
+    pattern = r'\b\w*(ie|uo)\w+\b'
     
     results = []
     for match in re.finditer(pattern, text_lower):
