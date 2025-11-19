@@ -12,8 +12,8 @@ from datetime import datetime
 import pyphen
 
 #---------- CONFIGS ------------
-TXT_DIR = Path("") #CHANGE HERE to directory with transcription txt files
-OUTPUT_DIR = Path("") #CHANGE HERE to directory for output files
+TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/test/transcriptions") #CHANGE HERE to directory with transcription txt files
+OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/test/transcriptions/OUTPUT_DIR") #CHANGE HERE to directory for output files
 OUTPUT_FILE = OUTPUT_DIR / "syllable_3_4.json"
 
 # Initialization of Italian hyphenation dictionary
