@@ -10,7 +10,7 @@ from pathlib import Path
 
 #---------- CONFIG -----------
 OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/transcriptions_abstract/OUTPUT_DIR")
-JSON_FILE = OUTPUT_DIR / "syllable_3_4_occurrences.json"
+JSON_FILE = OUTPUT_DIR / "syllable_3_4.json"
 
 #---------- MAIN FUNC ----------
 def main():
@@ -40,7 +40,7 @@ def main():
         return
     
     # Find files with 4-syllable words
-    files_with_4_syllables = set()
+    files_with_4_syllables = {}
     
     for occ in occurrences:
         if occ['syllables'] == 4:
