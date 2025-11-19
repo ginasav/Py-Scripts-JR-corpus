@@ -12,12 +12,12 @@ from datetime import datetime
 import pyphen
 
 #---------- CONFIGS ------------
-TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/test/transcriptions") #CHANGE HERE to directory with transcription txt files
+TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/transcriptions_abstract") #CHANGE HERE to directory with transcription txt files
 OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/test/transcriptions/OUTPUT_DIR") #CHANGE HERE to directory for output files
 OUTPUT_FILE = OUTPUT_DIR / "syllable_3_4.json"
 
 # Initialization of Italian hyphenation dictionary
-ITALIAN_HYPHENATOR = pyphen.Pyhpen(lang='it_IT')
+ITALIAN_HYPHENATOR = pyphen.Pyphen(lang='it_IT')
 
 # FUNCTION TO PARSE TIMESTAMPS
 def parse_timestamped_line(line):
@@ -172,7 +172,7 @@ def main():
     # JSON output
     output_data = {
         'processed_files': sorted(already_processed),
-        'occurrences': sorted(all_occurrences, key=lambda x: (x['filename'], x['start']))
+        'occurrences': sorted(all_occurrences, key=lambda x: (x['filename'], x['syllables'], x['start']))
     }
     
     # Save to JSON
