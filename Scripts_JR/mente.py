@@ -10,9 +10,9 @@ import json
 from datetime import datetime
 
 # --------- CONFIG ---------
-TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/transcriptions_abstract") # <--- CHANGE HERE
-OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/transcriptions_abstract/OUTPUT_DIR")
-OUTPUT_FILE = OUTPUT_DIR / "mente_occurrences_trial.json"
+TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions") # <--- CHANGE HERE
+OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions/OUTPUT_DIR")
+OUTPUT_FILE = OUTPUT_DIR / "mente_occurrences_ampliamento_20260116.json"
 
 # FUNCTION FOR PARSE TIMESTAMPS
 """

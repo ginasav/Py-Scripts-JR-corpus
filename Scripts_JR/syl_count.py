@@ -12,9 +12,9 @@ from datetime import datetime
 import pyphen
 
 #---------- CONFIGS ------------
-TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/transcriptions_abstract") #CHANGE HERE to directory with transcription txt files
-OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/test/transcriptions/OUTPUT_DIR") #CHANGE HERE to directory for output files
-OUTPUT_FILE = OUTPUT_DIR / "syllable_3_4.json"
+TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions") #CHANGE HERE to directory with transcription txt files
+OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions/OUTPUT_DIR") #CHANGE HERE to directory for output files
+OUTPUT_FILE = OUTPUT_DIR / "syllable_3_4_ampliamento_20260116.json"
 
 # Initialization of Italian hyphenation dictionary
 ITALIAN_HYPHENATOR = pyphen.Pyphen(lang='it_IT')

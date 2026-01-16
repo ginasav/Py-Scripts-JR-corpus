@@ -12,9 +12,9 @@ import re
 import json
 
 #-------CONFIG-------
-TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/transcriptions_abstract")
-OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/transcriptions_abstract/OUTPUT_DIR")
-OUTPUT_FILE = OUTPUT_DIR / "i_grafica_occurrences.json"
+TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions")
+OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions/OUTPUT_DIR")
+OUTPUT_FILE = OUTPUT_DIR / "i_grafica_occurrences_ampliamento_20260116.json"
 
 #-------FUNC to parse time-------
 def parse_timestamped_line(line):

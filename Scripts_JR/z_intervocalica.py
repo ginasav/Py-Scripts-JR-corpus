@@ -10,9 +10,9 @@ import re
 import json
 
 # --------- CONFIG ---------
-TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/transcriptions_abstract")
-OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/transcriptions_abstract/OUTPUT_DIR")
-OUTPUT_FILE = OUTPUT_DIR / "z_intervocalica_occurrences.json"
+TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions")
+OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions/OUTPUT_DIR")
+OUTPUT_FILE = OUTPUT_DIR / "z_intervocalica_occurrences_ampliamento_20260116.json"
 
 # --------- CONSTANTS ---------
 VOWELS = "aeiouàèéìòù"
