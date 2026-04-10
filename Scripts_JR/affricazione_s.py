@@ -28,7 +28,7 @@ s       = Literal letter 's' (must come immediately after l/r/n)
 
 
 def parse_timestamped_line(line):
-    pattern = r'\[(\d{2}:\d{2}\.\d) - (\d{2}:\d{2}\.\d)] (.+)'
+    pattern = r'\[(\d{2}:\d{2}\.\d) - (\d{2}:\d{2}\.\d)] (.+)' 
     match = re.match(pattern, line)
     if match:
         return match.group(1), match.group(2), match.group(3)
@@ -52,7 +52,7 @@ def find_s_clusters(text):
     # s      = literal 's' immediately after
     # \w*    = zero or more word characters after the cluster
     # \b     = word boundary
-    pattern = r'\b\w*[lrn]s\w*\b'
+    pattern = r'\b\w*[lrn]s\w*\b' #<--- Cambia qui con il pattern dei "chilli" ;)
     
     results = []
     
