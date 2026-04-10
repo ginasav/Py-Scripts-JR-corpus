@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
 Measure the duration of all MP3 files in a directory. It requires mutagen.
+
+Pass the folder path as an argument when running the script in the terminal. If no folder is specified, it will use the current directory. Use the -r or --recursive flag to include subfolders.
 """
 
 import os
@@ -77,7 +79,7 @@ def main():
         default=".",
         help="Path to the folder containing MP3 files (default: current directory)."
     )
-    parer.add_argument(
+    parser.add_argument(
         "-r", "--recursive",
         action="store_true",
         help="Search subfolders recursively."
