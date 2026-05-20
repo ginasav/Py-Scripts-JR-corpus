@@ -10,9 +10,9 @@ import json
 from datetime import datetime
 
 # --------- CONFIG ---------
-TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions") # <--- CHANGE HERE
-OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions/OUTPUT_DIR")
-OUTPUT_FILE = OUTPUT_DIR / "mente_occurrences_ampliamento_20260116.json"
+TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/test/transcriptions") # <--- CHANGE HERE
+OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/test/transcriptions/OUTPUT_DIR")
+OUTPUT_FILE = OUTPUT_DIR / "mente_occurrences_trail_v2.json"
 
 # FUNCTION FOR PARSE TIMESTAMPS
 def parse_timestamped_line(line):
@@ -138,15 +138,15 @@ def main():
                 start_time, end_time, text = parse_timestamped_line(line)
                 
                 if text: #if successfully the line was parsed
-                        for word, is_caduta in find_mente_in_txt(text):
-                            file_occurrences.append({
-                                'filename': txt_file.name,
-                                'start': start_time,
-                                'end': end_time,
-                                'word': word,
-                                'caduta': is_caduta,
-                                'context': text.strip()
-                            })
+                    for word, is_caduta in find_mente_in_txt(text):
+                        file_occurrences.append({
+                            'filename': txt_file.name,
+                            'start': start_time,
+                            'end': end_time,
+                            'word': word,
+                            'caduta': is_caduta,
+                            'context': text.strip()
+                        })
                             
             # Commit only if we got here without exceptions
             all_occurrences.extend(file_occurrences)
