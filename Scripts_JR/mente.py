@@ -34,6 +34,7 @@ Return list of matched words.
 def find_mente_in_txt(text):
     text_lower = text.lower()
     # Pattern that catches 'mente' or 'ment'
+    # This is broad on purpose: it catches both -mente (full) and -ment (caduta). Some false positives may occur, but they are filtered manually by listening to the audio captured by the timestamps above.
     pattern = r'\b\w*(mente?)\b'
     results = []
     for match in re.finditer(pattern, text_lower):
