@@ -128,19 +128,18 @@ def main():
         print(f"[{i}/{len(files_to_process)}] Processing: {txt_file.name}")
         
         try:
+            # Stage this file's results locally; only commit when it is successfully processed. This prevents duplicates if an exception is raised and #so the file is reprocesses
+            
+            file_occurrences = []
             lines = txt_file.read_text(encoding='utf-8').splitlines()
-            file_count = 0
             
             for line in lines:
                 #Parse timestamp and txt
                 start_time, end_time, text = parse_timestamped_line(line)
                 
                 if text: #if successfully the line was parsed
-                    mente_results = find_mente_in_txt(text)
-                    
-                    if mente_results:
-                        for word, is_caduta in mente_results:
-                            all_occurrences.append({
+                        for word, is_caduta in find_mente_in_txt(text):
+                            file_occurrences.append({
                                 'filename': txt_file.name,
                                 'start': start_time,
                                 'end': end_time,
@@ -148,10 +147,11 @@ def main():
                                 'caduta': is_caduta,
                                 'context': text.strip()
                             })
-                            file_count += 1
                             
-            print(f" -> Found {file_count} occurrences")
+            # Commit only if we got here without exceptions
+            all_occurrences.extend(file_occurrences)
             already_processed.add(txt_file.name)
+            print(f" -> Found {len(file_occurrences)} occurrences")
             
         except Exception as e:
             print(f" ❌ Error processing {txt_file.name}: {e}")
