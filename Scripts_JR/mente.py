@@ -15,11 +15,11 @@ OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abst
 OUTPUT_FILE = OUTPUT_DIR / "mente_occurrences_ampliamento_20260116.json"
 
 # FUNCTION FOR PARSE TIMESTAMPS
-"""
-Parse a line like: [00:15.2 - 00:18.7] Ciao come va?
-Return: (start_time, end_time, text) or (None, None, None) if not matched
-"""
 def parse_timestamped_line(line):
+    """
+    Parse a line like: [00:15.2 - 00:18.7] Ciao come va?
+    Return: (start_time, end_time, text) or (None, None, None) if not matched
+    """
     pattern = r'\[(\d{2}:\d{2}\.\d) - (\d{2}:\d{2}\.\d)] (.+)'
     match = re.match(pattern, line)
     if match:
@@ -27,11 +27,11 @@ def parse_timestamped_line(line):
     return None, None, None
 
 # MAIN FUNCTION TO LOOK FOR MENTE
-"""
-Find all words ending with mente in text.
-Return list of matched words.
-"""
 def find_mente_in_txt(text):
+    """
+    Find all words ending with mente in text.
+    Return list of matched words.
+    """
     text_lower = text.lower()
     # Pattern that catches 'mente' or 'ment'
     # This is broad on purpose: it catches both -mente (full) and -ment (caduta). Some false positives may occur, but they are filtered manually by listening to the audio captured by the timestamps above.
