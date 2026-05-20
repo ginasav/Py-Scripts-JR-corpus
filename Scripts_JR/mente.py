@@ -53,7 +53,7 @@ def load_already_processed_files(output_file):
     if not output_file.exists():
         return set()
     
-    processed_files = set ()
+    processed_files = set()
     try:
         content = output_file.read_text(encoding='utf-8')
         # Look for lines like "FILE: filename.txt"
@@ -185,7 +185,7 @@ def main():
     }
     
     #Save to JSON
-    with open (OUTPUT_FILE, 'w', encoding='utf-8') as f:
+    with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
         
     print(f"\n✅ Results saved to: {OUTPUT_FILE}")
