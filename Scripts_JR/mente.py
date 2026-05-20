@@ -90,6 +90,7 @@ def load_existing_occurrences(json_file):
 
 # FUNCTION THAT RETURNS THE ANALYSIS
 def main():
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True) # Ensure output directory exists
     print(f"Looking for txt files in :{TXT_DIR}")
     
     # Check which files were already processed
