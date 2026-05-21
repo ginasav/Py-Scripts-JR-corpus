@@ -10,9 +10,9 @@ import json
 from datetime import datetime
 
 # --------- CONFIG ---------
-TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/test/transcriptions") # <--- CHANGE HERE
-OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/test/transcriptions/OUTPUT_DIR")
-OUTPUT_FILE = OUTPUT_DIR / "mente_occurrences_trail_v2.json"
+TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/trascrizioni_audio/non-laureato") # <--- CHANGE HERE
+OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/OUTPUT scripts")
+OUTPUT_FILE = OUTPUT_DIR / "mente_occurrences_non_laureato.json"
 
 # FUNCTION FOR PARSE TIMESTAMPS
 def parse_timestamped_line(line):
