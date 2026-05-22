@@ -12,9 +12,9 @@ import json
 from datetime import datetime
 
 #-----CONFIG-----
-TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions") # CHANGE HERE - where txt files are located
-OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions/OUTPUT_DIR") # CHANGE HERE - where to save the output JSON
-OUTPUT_FILE = OUTPUT_DIR / "diphthongs_occurrences_ampliamento_20260116.json"
+TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/trascrizioni_audio/non-laureato") # CHANGE HERE - where txt files are located
+OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/OUTPUT scripts") # CHANGE HERE - where to save the output JSON
+OUTPUT_FILE = OUTPUT_DIR / "diphthongs_occurrences_non_laureato.json"
 
 #-----PARSE TIMESTAMPS-----
 def parse_timestamped_line(line):
