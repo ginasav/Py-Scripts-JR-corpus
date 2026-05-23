@@ -94,7 +94,8 @@ def starts_with_valid_consonant(word):
 
 # Function that find the RF candidates
 def find_rf_candidates():
-    return
+    """Find potential RF candidates in the parsed transcription. Returns a list of occurrence dicts."""
+    
 
 
 #-----TEST ZONE-----
