@@ -8,9 +8,9 @@ from pathlib import Path
 import json
 
 #-----CONFIG-----
-INPUT_FOLDER = Path("path/to-7txt") #CHANGE HERE - txt files
-OUTPUT_FOLDER = Path("path/to-8results") #CHANGE HERE - results folder
-OUTPUT_JSON = OUTPUT_FOLDER / "syntactic_gemination_results.json"
+INPUT_FOLDER = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/trascrizioni_audio/laureato") #CHANGE HERE - txt files
+OUTPUT_FOLDER = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/OUTPUT scripts") #CHANGE HERE - results folder
+OUTPUT_JSON = OUTPUT_FOLDER / "syntactic_gemination_results_laureato.json"
 CONTEXT_WINDOW = 3 # how many words before and after the trigger to include in the context snippet
 
 #-----CONSTANTS-----
@@ -172,6 +172,13 @@ def save_results(data, json_path):
     
 #-----MAIN-----
 def main():
+    #debug
+    print(f"DEBUG: INPUT_FOLDER  = {INPUT_FOLDER}")
+    print(f"DEBUG: OUTPUT_FOLDER = {OUTPUT_FOLDER}")
+    print(f"DEBUG: OUTPUT_JSON   = {OUTPUT_JSON}")
+    print(f"DEBUG: OUTPUT_JSON.absolute() = {OUTPUT_JSON.absolute()}")
+    print(f"DEBUG: OUTPUT_FOLDER.exists() = {OUTPUT_FOLDER.exists()}")
+    
     # before starting, make sure the output folder exists
     OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
     
@@ -181,7 +188,7 @@ def main():
     
     # 2. Lis all .txt files in the input folder
     txt_files = sorted(INPUT_FOLDER.glob("*.txt"))
-    print(f"Found {len(new_files)} .txt files in {INPUT_FOLDER}")
+    print(f"Found {len(txt_files)} .txt files in {INPUT_FOLDER}")
     
     # 3. Process only files not already done
     new_files = [f for f in txt_files if f.name not in processed_set]
@@ -203,10 +210,16 @@ def main():
         
         # 3c. Append to results
         results["occurrences"].extend(candidates)
-        results["processed_files"].appen(filepath.name)
+        results["processed_files"].append(filepath.name)
         
         #3d. Update total
         results["total_occurrences"] = len(results["occurrences"])
+        
+        #4. Save!!!
+        save_results(results, OUTPUT_JSON)
+        
+    # to be sure...
+    print(f"\n✅ Done! Total occurrences: {results['totaloccurrences']}")
 
 
 if __name__ == "__main__":
