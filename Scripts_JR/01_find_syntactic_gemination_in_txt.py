@@ -11,17 +11,17 @@ import json
 # Words that trigger Raddoppiamento Fonosintattico
 TRIGGER_WORDS = {
     # Verbs (monosyllabic)
-    "do", "sto", "fa", "so",
+    "do", "sto", "so", "sa", "è", "fu", "ho",
     # Pronouns
     "tu", "me", "te", "che", "chi",
     # Prepositions
     "a", "tra", "fra", "su",
     # Conjunctions
-    "e", "o", "ma", "se", "ne",
+    "e", "se", "ne",
     # Relatives / indefinites
     "ogni", "qualche", "dove",
-    # Numerals
-    "tre",
+    # Others
+    "tre", "re", "blue"
 }
 
 
@@ -110,34 +110,70 @@ def starts_with_valid_consonant(word):
     return True
 
 # Function that find the RF candidates
-def find_rf_candidates():
+def find_rf_candidates(parsed_lines, trigger_set, filename):
     """Find potential RF candidates in the parsed transcription. Returns a list of occurrence dicts."""
+    # STEP 1: Flatten all lines into one sequence of (word, start, end) tuples
+    words_with_timestamps = []
+    for start, end, text in parsed_lines:
+        for w in text.split():
+            words_with_timestamps.append((w, start, end))
+            
+    occurrences = []
     
+    # STEP 2: Walk through the words, looking at each (trigger, next_word) pair
+    for i in range(len(words_with_timestamps) - 1):
+        word, start, end = words_with_timestamps[i]
+        next_word, next_start, next_end = words_with_timestamps[i + 1]
+        
+        # STEP 3: Normalize the words for comparison
+        norm_word = normalize_word(word)
+        norm_next = normalize_word(next_word)
+        
+        # STEP 4: Is this a trigger?
+        if norm_word not in trigger_set:
+            continue
+        
+        # STEP 5: Does the next word start with a valid consonant?
+        if not starts_with_valid_consonant(norm_next):
+            continue
+        
+        # STEP 6: Build context (up to 3 words begore + trigger + up to 3 after)
+        context_start = max(0, i - 3)
+        context_end = min(len(words_with_timestamps), i + 4)
+        context_words = [w for w, _, _ in words_with_timestamps[context_start:context_end]]
+        context = " ".join(context_words)
+        
+        # STEP 7: Record the occurrence
+        occurrences.append({
+            "filename": filename,
+            "start": start,
+            "end": next_end,
+            "trigger_word": word,
+            "following_word": next_word,
+            "context": context
+        })
+    
+    return occurrences
 
+# Function to save results to JSON
+def save_results(data, json_path):
+    """
+    Save the results data to a JSON file. Pretty-printed with UTF-8 characters preserved.
+    """
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+    print(f"Saved results to {json_path}")
 
 #-----TEST ZONE-----
-# Test 1: JSON doesn't exist
-test_path = Path("non_existent_file.json")
-result = load_existing_results(test_path)
-print("empty stucture", result)
-#what I should expect: {"total_occurrences": 0, "processed_files": [], "occurrences": []}
+test_file = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/trascrizioni_audio/laureato/240923-JR-Naples-0002-marmo-luca.txt")
 
-# Test 2: JSON exists and is valid
-test_path = Path("true_json_test.json")
-with open(test_path, "w", encoding="utf-8") as f:
-    json.dump({"total_occurrences": 5, "processed_files": ["file1.txt"], "occurrences": [{"file": "file1.txt", "start": "00:00.0", "end": "00:05.0", "text": "example text"}]}, f)
-result = load_existing_results(test_path)
-print("loaded data", result)
+parsed = parse_transcription_file(test_file)
+candidates = find_rf_candidates(parsed, TRIGGER_WORDS, test_file.name)
 
-# Test 3: Json corrupted
-test_path = Path("corrupted_test.json")
-with open(test_path, "w", encoding="utf-8") as f:
-    f.write("{ this is not valid JSON }")
-try:
-    result = load_existing_results(test_path)
-except json.JSONDecodeError:
-    print("Caught JSONDecodeError as expected for corrupted file.")
-    
-# Clean up the json test file
-Path("true_json_test.json").unlink()
-Path("corrupted_test.json").unlink()
+print(f"\nFound {len(candidates)} RF candidates.\n")
+
+# Show the first 5 candidates
+for c in candidates[:5]:
+    print(f"  [{c['start']} -> {c['end']}] '{c['trigger_word']}' + '{c['following_word']}'")
+    print(f"    Context: {c['context']}\n")
+    print()
