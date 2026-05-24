@@ -163,6 +163,41 @@ def save_results(data, json_path):
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
     print(f"Saved results to {json_path}")
+    
+#-----MAIN-----
+def main():
+    # 1. Load existing results
+    results = load_existing_results(OUTPUT_JSON)
+    processed_set = set(results["processed_files"])
+    
+    # 2. Lis all .txt files in the input folder
+    txt_files = sorted(INPUT_FOLDER.glob("*.txt"))
+    print(f"Found {len(new_files)} .txt files in {INPUT_FOLDER}")
+    
+    # 3. Process only files not already done
+    new_files = [f for f in txt_files if f.name not in processed_set]
+    print(f"{len(new_files)} new file to process.\n") 
+    
+    if not new_files:
+        print("Nothing new to process. Exiting.")
+        return
+    
+    for filepath in new_files:
+        print(f"Processing: {filepath.name}")
+        
+        # 3a. Parse
+        parsed = parse_transcription_file(filepath)
+        
+        # 3b. Find candidates
+        candidates = find_rf_candidates(parsed, TRIGGER_WORDS, filepath.name)
+        print(f"  -> {len(candidates)} candidate(s) found.")
+        
+        # 3c. Append to results
+        results["occurrences"].extend(candidates)
+        results["processed_files"].appen(filepath.name)
+        
+        #3d. Update total
+        results["total_occurrences"] = len(results["occurrences"])
 
 #-----TEST ZONE-----
 test_file = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/trascrizioni_audio/laureato/240923-JR-Naples-0002-marmo-luca.txt")
