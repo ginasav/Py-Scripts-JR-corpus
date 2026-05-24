@@ -7,6 +7,12 @@ import re
 from pathlib import Path
 import json
 
+#-----CONFIG-----
+INPUT_FOLDER = Path("path/to-7txt") #CHANGE HERE - txt files
+OUTPUT_FOLDER = Path("path/to-8results") #CHANGE HERE - results folder
+OUTPUT_JSON = OUTPUT_FOLDER / "syntactic_gemination_results.json"
+CONTEXT_WINDOW = 3 # how many words before and after the trigger to include in the context snippet
+
 #-----CONSTANTS-----
 # Words that trigger Raddoppiamento Fonosintattico
 TRIGGER_WORDS = {
@@ -138,8 +144,8 @@ def find_rf_candidates(parsed_lines, trigger_set, filename):
             continue
         
         # STEP 6: Build context (up to 3 words begore + trigger + up to 3 after)
-        context_start = max(0, i - 3)
-        context_end = min(len(words_with_timestamps), i + 4)
+        context_start = max(0, i - CONTEXT_WINDOW)
+        context_end = min(len(words_with_timestamps), i + CONTEXT_WINDOW + 1)
         context_words = [w for w, _, _ in words_with_timestamps[context_start:context_end]]
         context = " ".join(context_words)
         
@@ -166,6 +172,9 @@ def save_results(data, json_path):
     
 #-----MAIN-----
 def main():
+    # before starting, make sure the output folder exists
+    OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
+    
     # 1. Load existing results
     results = load_existing_results(OUTPUT_JSON)
     processed_set = set(results["processed_files"])
@@ -199,16 +208,8 @@ def main():
         #3d. Update total
         results["total_occurrences"] = len(results["occurrences"])
 
+
+if __name__ == "__main__":
+    main()
+
 #-----TEST ZONE-----
-test_file = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/trascrizioni_audio/laureato/240923-JR-Naples-0002-marmo-luca.txt")
-
-parsed = parse_transcription_file(test_file)
-candidates = find_rf_candidates(parsed, TRIGGER_WORDS, test_file.name)
-
-print(f"\nFound {len(candidates)} RF candidates.\n")
-
-# Show the first 5 candidates
-for c in candidates[:5]:
-    print(f"  [{c['start']} -> {c['end']}] '{c['trigger_word']}' + '{c['following_word']}'")
-    print(f"    Context: {c['context']}\n")
-    print()
