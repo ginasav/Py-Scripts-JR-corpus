@@ -7,6 +7,23 @@ import re
 from pathlib import Path
 import json
 
+#-----CONSTANTS-----
+# Words that trigger Raddoppiamento Fonosintattico
+TRIGGER_WORDS = {
+    # Verbs (monosyllabic)
+    "do", "sto", "fa", "so",
+    # Pronouns
+    "tu", "me", "te", "che", "chi",
+    # Prepositions
+    "a", "tra", "fra", "su",
+    # Conjunctions
+    "e", "o", "ma", "se", "ne",
+    # Relatives / indefinites
+    "ogni", "qualche", "dove",
+    # Numerals
+    "tre",
+}
+
 
 #-----FUNCTIONS-----
 
