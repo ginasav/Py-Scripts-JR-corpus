@@ -15,6 +15,7 @@ import json
 TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/trascrizioni_audio/non-laureato")
 OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/OUTPUT scripts")
 OUTPUT_FILE = OUTPUT_DIR / "i_grafica_occurrences_non_laureato.json"
+EXCLUDED_WORDS = {"ciao", "cioè"} # too much noise
 
 #-------FUNC to parse time-------
 def parse_timestamped_line(line):
@@ -52,6 +53,10 @@ def find_i_grafica(text):
             #Determine position (initial vs internal)
             is_initial = (ci_position == 0)
             position = 'initial' if is_initial else 'internal'
+            
+            # excluded words "ciao" and "cioè" (too much noise)
+            if word in EXCLUDED_WORDS:
+                continue
             
             results.append((word, pattern_found, position, 'ci'))
             
@@ -194,6 +199,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-
-    
-    

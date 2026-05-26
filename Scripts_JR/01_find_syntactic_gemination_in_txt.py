@@ -8,9 +8,9 @@ from pathlib import Path
 import json
 
 #-----CONFIG-----
-INPUT_FOLDER = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/trascrizioni_audio/laureato") #CHANGE HERE - txt files
+INPUT_FOLDER = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/trascrizioni_audio/non-laureato") #CHANGE HERE - txt files
 OUTPUT_FOLDER = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/OUTPUT scripts") #CHANGE HERE - results folder
-OUTPUT_JSON = OUTPUT_FOLDER / "syntactic_gemination_results_laureato.json"
+OUTPUT_JSON = OUTPUT_FOLDER / "syntactic_gemination_results_non_laureato.json"
 CONTEXT_WINDOW = 3 # how many words before and after the trigger to include in the context snippet
 
 #-----CONSTANTS-----
@@ -219,7 +219,7 @@ def main():
         save_results(results, OUTPUT_JSON)
         
     # to be sure...
-    print(f"\n✅ Done! Total occurrences: {results['totaloccurrences']}")
+    print(f"\n✅ Done! Total occurrences: {results['total_occurrences']}")
 
 
 if __name__ == "__main__":
