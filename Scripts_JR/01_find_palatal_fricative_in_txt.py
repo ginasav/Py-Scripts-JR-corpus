@@ -23,9 +23,9 @@ import re
 import json
 
 # --------- CONFIG ---------
-JSON_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/trascrizioni_audio/non-laureato")  # <--- CHANGE HERE: folder with word-level JSON files
+JSON_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/whisperx_output/non-laureato")  # <--- CHANGE HERE: folder with word-level JSON files
 OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/OUTPUT scripts")
-OUTPUT_FILE = OUTPUT_DIR / "soft_c_occurrences_non_laureato.json"
+OUTPUT_FILE = OUTPUT_DIR / "fricative_c_occurrences_non_laureato.json"
 
 # --------- CONSTANTS ---------
 VOWELS = "aeiouàèéìòùáíúAEIOUÀÈÉÌÒÙÁÍÚ"
