@@ -9,9 +9,9 @@ import re
 import json
 
 # --------- CONFIG ---------
-TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions")
-OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/JR_audio/Abstract AVIS/Ampliamento parlanti 20260116/transcriptions/OUTPUT_DIR")
-OUTPUT_FILE = OUTPUT_DIR / "affricazione_s_ampliamento_20260116.json"
+TXT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/trascrizioni_audio/non-laureato")
+OUTPUT_DIR = Path("/Users/ginasaviano/Documents/Gent/PhD Materials/Nuovo paper_Gina/OUTPUT scripts")
+OUTPUT_FILE = OUTPUT_DIR / "affrication_s_occurrences_non_laureato.json"
 
 
 # --------- REGEX EXPLANATION ---------
